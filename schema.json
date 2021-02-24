@@ -1,0 +1,118 @@
+{
+    "repositoryDefinition": {
+        "type": "object",
+        "properties": {
+            "name": { "type": "string" }
+        },
+        "nameField": "name",
+        "identityFields": ["name"]
+    },
+    "sourceConfigDefinition": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name","sybbkploc"],
+        "properties": {
+            "name": {
+               "type": "string",
+               "prettyName": "SAP ASE Database Name",
+               "description": "SAP ASE Database Name - Needs exact DB name to look for backup files"
+                },
+            "sybbkploc":{
+                    "type": "string",
+                    "format": "unixpath",
+                    "prettyName": "SAP ASE Backup Location",
+                    "description": "SAP ASE Backup Location - Backups need to be named DBNAME_s[0-9]%.dmp"
+               }
+            
+        },
+        "nameField": "name",
+        "identityFields": ["name"]
+    },
+    "virtualSourceDefinition": {
+        "type": "object",
+        "additionalProperties" : false,
+        "required": ["vdbname","binarytgt","mountLocation","vdbusername","vdbpassword","asename"],
+        "properties" : {
+        "vdbname": {
+            "type": "string",
+            "prettyName": "vDB Name",
+            "description": "vDB Name"
+        },
+        "binarytgt": {
+            "type": "string",
+            "format": "unixpath",
+            "prettyName": "SAP ASE Binaries path",
+            "description": "Path of SAP ASE Binaries"
+        },
+        "mountLocation": {
+            "type": "string",
+            "format": "unixpath",
+            "prettyName": "Mount Location on Target Host",
+            "description": "Where to mount VDB onto the target host"
+        },
+        "vdbusername": {
+            "type": "string",
+            "prettyName": "vDB username - (sa_role needed)",
+            "description": "vDB username with a SA role"
+        },
+            "asename": {
+            "type": "string",
+            "prettyName": "ASE Name Interfaces",
+            "description": "ASE Name Interfaces"
+        },
+        "vdbpassword": {
+            "type": "string",
+            "format": "password",
+            "prettyName": "vDB username password",
+            "description": "vDB username password"
+        }
+        },
+        "ordering": ["vdbname", "binarytgt", "mountLocation", "asename", "vdbusername", "vdbpassword"]
+    },
+    "linkedSourceDefinition": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["asename","binarypath","mountLocation","aseuser","asepass"],
+        "properties": {
+            "asename":{
+                "type": "string",
+                "prettyName": "SAP ASE Server Name",
+                "description": "SAP ASE Server Name - Needs match with interfaces file name in Host"
+                    },
+            "binarypath": {
+                "type": "string",
+                "format": "unixpath",
+                "prettyName": "SAP ASE Binaries Path",
+                "description": "Path of SAP ASE Binaries"
+            },
+            "mountLocation": {
+                "type": "string",
+                "format": "unixpath",
+                "prettyName": "Mount Path in Staging server",
+                "description": "Mount Path in Staging server"
+            },
+            "aseuser": {
+                "type": "string",
+                "prettyName": "Stage DB username - (sa_role needed)",
+                "description": "Stage DB username with a SA role"
+        },
+            "asepass": {
+                "type": "string",
+                "format": "password",
+                "prettyName": "Stage DB username password",
+                "description": "Stage DB username password"
+        }
+        },
+        "ordering": ["asename", "binarypath","mountLocation", "aseuser", "asepass"]
+    },
+    "snapshotDefinition": {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {}
+    },
+    "snapshotParametersDefinition": {
+        "type" : "object",
+        "additionalProperties" : false,
+        "properties" : {}
+    }
+}

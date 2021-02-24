@@ -1,0 +1,89 @@
+---
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "ASEBI"
+paths: {}
+definitions:
+  sourceConfigDefinition:
+    type: "object"
+    required:
+    - "name"
+    - "sybbkploc"
+    properties:
+      sybbkploc:
+        type: "string"
+        format: "unixpath"
+        description: "SAP ASE Backup Location - Backups need to be named DBNAME_s[0-9]%.dmp"
+      name:
+        type: "string"
+        description: "SAP ASE Database Name - Needs exact DB name to look for backup\
+          \ files"
+  virtualSourceDefinition:
+    type: "object"
+    required:
+    - "asename"
+    - "binarytgt"
+    - "mountLocation"
+    - "vdbname"
+    - "vdbpassword"
+    - "vdbusername"
+    properties:
+      vdbpassword:
+        type: "string"
+        format: "password"
+        description: "vDB username password"
+      vdbusername:
+        type: "string"
+        description: "vDB username with a SA role"
+      binarytgt:
+        type: "string"
+        format: "unixpath"
+        description: "Path of SAP ASE Binaries"
+      asename:
+        type: "string"
+        description: "ASE Name Interfaces"
+      vdbname:
+        type: "string"
+        description: "vDB Name"
+      mountLocation:
+        type: "string"
+        format: "unixpath"
+        description: "Where to mount VDB onto the target host"
+  snapshotDefinition:
+    type: "object"
+  linkedSourceDefinition:
+    type: "object"
+    required:
+    - "asename"
+    - "asepass"
+    - "aseuser"
+    - "binarypath"
+    - "mountLocation"
+    properties:
+      binarypath:
+        type: "string"
+        format: "unixpath"
+        description: "Path of SAP ASE Binaries"
+      asepass:
+        type: "string"
+        format: "password"
+        description: "Stage DB username password"
+      asename:
+        type: "string"
+        description: "SAP ASE Server Name - Needs match with interfaces file name\
+          \ in Host"
+      aseuser:
+        type: "string"
+        description: "Stage DB username with a SA role"
+      mountLocation:
+        type: "string"
+        format: "unixpath"
+        description: "Mount Path in Staging server"
+  repositoryDefinition:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+  snapshotParametersDefinition:
+    type: "object"

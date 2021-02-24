@@ -1,0 +1,160 @@
+{
+  "info": {
+    "version": "1.0.0", 
+    "title": "ASEBI"
+  }, 
+  "paths": {}, 
+  "swagger": "2.0", 
+  "definitions": {
+    "sourceConfigDefinition": {
+      "identityFields": [
+        "name"
+      ], 
+      "required": [
+        "name", 
+        "sybbkploc"
+      ], 
+      "nameField": "name", 
+      "additionalProperties": false, 
+      "type": "object", 
+      "properties": {
+        "sybbkploc": {
+          "prettyName": "SAP ASE Backup Location", 
+          "type": "string", 
+          "description": "SAP ASE Backup Location - Backups need to be named DBNAME_s[0-9]%.dmp", 
+          "format": "unixpath"
+        }, 
+        "name": {
+          "prettyName": "SAP ASE Database Name", 
+          "type": "string", 
+          "description": "SAP ASE Database Name - Needs exact DB name to look for backup files"
+        }
+      }
+    }, 
+    "virtualSourceDefinition": {
+      "additionalProperties": false, 
+      "ordering": [
+        "vdbname", 
+        "binarytgt", 
+        "mountLocation", 
+        "asename", 
+        "vdbusername", 
+        "vdbpassword"
+      ], 
+      "required": [
+        "vdbname", 
+        "binarytgt", 
+        "mountLocation", 
+        "vdbusername", 
+        "vdbpassword", 
+        "asename"
+      ], 
+      "type": "object", 
+      "properties": {
+        "vdbpassword": {
+          "prettyName": "vDB username password", 
+          "type": "string", 
+          "description": "vDB username password", 
+          "format": "password"
+        }, 
+        "vdbusername": {
+          "prettyName": "vDB username - (sa_role needed)", 
+          "type": "string", 
+          "description": "vDB username with a SA role"
+        }, 
+        "binarytgt": {
+          "prettyName": "SAP ASE Binaries path", 
+          "type": "string", 
+          "description": "Path of SAP ASE Binaries", 
+          "format": "unixpath"
+        }, 
+        "asename": {
+          "prettyName": "ASE Name Interfaces", 
+          "type": "string", 
+          "description": "ASE Name Interfaces"
+        }, 
+        "vdbname": {
+          "prettyName": "vDB Name", 
+          "type": "string", 
+          "description": "vDB Name"
+        }, 
+        "mountLocation": {
+          "prettyName": "Mount Location on Target Host", 
+          "type": "string", 
+          "description": "Where to mount VDB onto the target host", 
+          "format": "unixpath"
+        }
+      }
+    }, 
+    "snapshotDefinition": {
+      "additionalProperties": false, 
+      "type": "object", 
+      "properties": {}
+    }, 
+    "linkedSourceDefinition": {
+      "additionalProperties": false, 
+      "ordering": [
+        "asename", 
+        "binarypath", 
+        "mountLocation", 
+        "aseuser", 
+        "asepass"
+      ], 
+      "required": [
+        "asename", 
+        "binarypath", 
+        "mountLocation", 
+        "aseuser", 
+        "asepass"
+      ], 
+      "type": "object", 
+      "properties": {
+        "binarypath": {
+          "prettyName": "SAP ASE Binaries Path", 
+          "type": "string", 
+          "description": "Path of SAP ASE Binaries", 
+          "format": "unixpath"
+        }, 
+        "asepass": {
+          "prettyName": "Stage DB username password", 
+          "type": "string", 
+          "description": "Stage DB username password", 
+          "format": "password"
+        }, 
+        "asename": {
+          "prettyName": "SAP ASE Server Name", 
+          "type": "string", 
+          "description": "SAP ASE Server Name - Needs match with interfaces file name in Host"
+        }, 
+        "aseuser": {
+          "prettyName": "Stage DB username - (sa_role needed)", 
+          "type": "string", 
+          "description": "Stage DB username with a SA role"
+        }, 
+        "mountLocation": {
+          "prettyName": "Mount Path in Staging server", 
+          "type": "string", 
+          "description": "Mount Path in Staging server", 
+          "format": "unixpath"
+        }
+      }
+    }, 
+    "repositoryDefinition": {
+      "identityFields": [
+        "name"
+      ], 
+      "type": "object", 
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }, 
+      "nameField": "name"
+    }, 
+    "snapshotParametersDefinition": {
+      "additionalProperties": false, 
+      "type": "object", 
+      "properties": {}
+    }
+  }
+}

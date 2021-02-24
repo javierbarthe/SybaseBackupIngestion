@@ -1,0 +1,10 @@
+id: 40ba781d-a70a-4197-ae1a-8753ea401c93
+name: ASEBI
+language: PYTHON27
+hostTypes:
+- UNIX
+pluginType: STAGED
+entryPoint: plugin_runner:plugin
+srcDir: src
+schemaFile: schema.json
+buildNumber: 0.1.0
